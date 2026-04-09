@@ -1,0 +1,6 @@
+framework module Pods_118NoteMind {
+  umbrella header "Pods-118NoteMind-umbrella.h"
+
+  export *
+  module * { export * }
+}
