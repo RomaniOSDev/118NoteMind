@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Two rotating segments loader (example style)
-
-struct NewLoadTwoCircleView: View {
+struct DualArcWaitingGlyph: View {
     var progress: Double
     @State private var rotationAngle: Double = 0.0
     var width: CGFloat = 72
@@ -52,7 +50,7 @@ struct NewLoadTwoCircleView: View {
             segmentArc(gradient: tailGradient, lineW: lineW, angle: rotationAngle + 180)
 
             if progress > 0.5 {
-                EndLoadingIndicator()
+                SuccessBloomBadge()
             }
         }
         .onAppear {
@@ -81,7 +79,7 @@ struct NewLoadTwoCircleView: View {
     }
 }
 
-struct EndLoadingIndicator: View {
+struct SuccessBloomBadge: View {
     private let greenColor = Color.green
 
     var body: some View {
@@ -99,6 +97,7 @@ struct EndLoadingIndicator: View {
             Circle()
                 .foregroundStyle(greenColor)
                 .frame(width: 48, height: 48)
+                .opacity(0.6)
                 .shadow(color: .black.opacity(0.25), radius: 6, y: 3)
                 .shadow(color: greenColor.opacity(0.5), radius: 4)
             Image(systemName: "checkmark")
@@ -110,18 +109,14 @@ struct EndLoadingIndicator: View {
     }
 }
 
-// MARK: - Start Main View
-
-struct StartMainView: View {
+struct BootstrapWaitingScene: View {
     var body: some View {
         ZStack {
-            // Background image
             Image(.launcjIMG)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
 
-            // Dark overlay for contrast and text readability
             LinearGradient(
                 colors: [
                     Color.black.opacity(0.35),
@@ -135,7 +130,7 @@ struct StartMainView: View {
             VStack(spacing: 24) {
                 Spacer()
 
-                NewLoadTwoCircleView(progress: 0)
+                DualArcWaitingGlyph(progress: 0)
 
                 Text("Loading...")
                     .font(.system(size: 17, weight: .medium))
@@ -150,5 +145,7 @@ struct StartMainView: View {
 }
 
 #Preview {
-    StartMainView()
+    BootstrapWaitingScene()
 }
+
+private protocol _UnusedLaunchMetrics: AnyObject {}

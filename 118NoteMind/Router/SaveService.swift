@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct SaveService {
-    
+struct UrlDefaultsBridge {
     static var lastUrl: URL? {
-        get { UserDefaults.standard.url(forKey: "LastUrl") }
-        set { UserDefaults.standard.set(newValue, forKey: "LastUrl") }
+        get { UserDefaults.standard.url(forKey: RouterDefaultsKeyVault.resolvedSavedURLKey) }
+        set { UserDefaults.standard.set(newValue, forKey: RouterDefaultsKeyVault.resolvedSavedURLKey) }
     }
 }
